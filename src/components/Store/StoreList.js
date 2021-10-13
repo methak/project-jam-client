@@ -1,10 +1,11 @@
 import React, { useContext, useEffect} from "react";
+import { Link } from 'react-router-dom'
 
 import { useClient } from "../../client";
 import Context from "../../context";
 
 
-const StoreList = () => {
+const StoreList = (props) => {
     const GET_STORES_QUERY = `
   {
     getStores {
@@ -22,7 +23,9 @@ const StoreList = () => {
         picture
       }
       items {
-        text
+        name
+        quantity
+        isBought
         createdAt
         shopper {
           _id
@@ -48,12 +51,24 @@ const StoreList = () => {
             payload: getStores
         });
     };
+    const handleClick = (store) => {
+        console.log("Clicked !!!");
+        dispatch({
+            type: "SET_STORE",
+            payload: store
+          });
+      }
 
     return (
         <>
             <h3>Your Store List</h3>
             {state.stores.map(store => (
-                <li key={store._id}>{store.title} {store.content} </li>
+                <div key={store._id} onClick={() => { handleClick(store) }} >
+                    <li >{store.title} {store.content}
+                        <Link to={`/${store._id}`}>  ::: </Link>
+                    </li>
+                
+                </div>
             ))}
         </>
     )

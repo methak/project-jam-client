@@ -27,6 +27,23 @@ export default function reducer(state, {type, payload}) {
                 ...state,
                 stores: payload
             };
+        case "SET_STORE":
+            return {
+                ...state,
+                currentStore: payload,
+                
+            };
+        case "CREATE_ITEM":
+            const updatedCurrentStore = payload;
+            // find and replace
+            const updatedStores = state.stores.map(store =>
+                store._id === updatedCurrentStore._id ? updatedCurrentStore : store
+            );
+            return {
+                ...state,
+                stores: updatedStores,
+                currentStore: updatedCurrentStore
+            };
 
         default:
             return state
