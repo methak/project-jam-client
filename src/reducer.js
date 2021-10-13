@@ -22,6 +22,11 @@ export default function reducer(state, {type, payload}) {
                 ...state,
                 draft: null
             };
+        case "GET_STORES":
+            return {
+                ...state,
+                stores: payload
+            };
 
         default:
             return state

@@ -33,10 +33,10 @@ const CreateStore = () => {
 
     const client = useClient();
     const { state, dispatch } = useContext(Context);
-    const [title, setTitle] = useState("Test Title");
+    const [title, setTitle] = useState("");
     //const [image, setImage] = useState("");
     const [content, setContent] = useState("");
-    const [submitting, setSubmitting] = useState(false);
+    //const [submitting, setSubmitting] = useState(false);
 
     const handleDeleteDraft = () => {
         console.log("Clear Input");
@@ -49,7 +49,7 @@ const CreateStore = () => {
     const handleSubmit = async event => {
         try {
           event.preventDefault();
-          setSubmitting(true);
+          //setSubmitting(true);
           const url = ""
           //const url = await handleImageUpload();
           //const { latitude, longitude } = null;
@@ -65,7 +65,7 @@ const CreateStore = () => {
     
           handleDeleteDraft();
         } catch (err) {
-          setSubmitting(false);
+          //setSubmitting(false);
           console.error("Error creating store", err);
         }
     };
@@ -75,11 +75,11 @@ const CreateStore = () => {
             <form onSubmit={handleSubmit}>
             <p>
               <label htmlFor="title">Title</label>
-              <input name="title" id="title"  onChange={e => setTitle(e.target.value)} />
+              <input name="title" id="title" value={title} onChange={e => setTitle(e.target.value)} />
             </p>
             <p>
               <label htmlFor="content">Content</label>
-              <input name="content" id="content"  onChange={e => setContent(e.target.value)} />
+              <input name="content" id="content" value={content} onChange={e => setContent(e.target.value)} />
             </p>
             
               <input type="submit" value="Create store" onClick={handleSubmit}/>
