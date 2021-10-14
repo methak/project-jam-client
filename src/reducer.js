@@ -33,7 +33,14 @@ export default function reducer(state, {type, payload}) {
                 currentStore: payload,
                 
             };
-        case "CREATE_ITEM":
+        case "CREATE_STORE":
+            const newStore = payload;
+            const prevStores = state.stores.filter(store => store._id !== newStore._id);
+            return {
+                ...state,
+                stores: [...prevStores, newStore]
+            };
+        case "MODIFY_ITEM":
             const updatedCurrentStore = payload;
             // find and replace
             const updatedStores = state.stores.map(store =>
@@ -44,7 +51,8 @@ export default function reducer(state, {type, payload}) {
                 stores: updatedStores,
                 currentStore: updatedCurrentStore
             };
-
+       
+    
         default:
             return state
     }

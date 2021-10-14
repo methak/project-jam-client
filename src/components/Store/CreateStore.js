@@ -54,15 +54,9 @@ const CreateStore = () => {
           //const url = await handleImageUpload();
           //const { latitude, longitude } = null;
           const variables = { title, image: url, content, latitude: 0, longitude: 0 };
-          client.request(CREATE_STORE_MUTATION, variables);
+          const { createStore } = await client.request(CREATE_STORE_MUTATION, variables);
     
-          // Now that we have GraphQL subscriptions, we don't need the following
-          // const { createPin } = await client.request(
-          //   CREATE_PIN_MUTATION,
-          //   variables
-          // );
-          // dispatch({ type: "CREATE_PIN", payload: createPin });
-    
+          dispatch({ type: "CREATE_STORE", payload: createStore });
           handleDeleteDraft();
         } catch (err) {
           //setSubmitting(false);

@@ -33,11 +33,13 @@ const Login = ({ classes }) => {
       dispatch({ type: "IS_LOGGED_IN", payload: googleUser.isSignedIn() })
     } 
     catch (err) {
-      console.error("Error Google Auth", err)
+      onFailure(err);
     }
   }
   const onFailure = err => {
     console.error("Error Login", err)
+    dispatch({ type: "IS_LOGGED_IN", payload: false });
+
   }
   return (
     <div className={classes.root}>
