@@ -23,6 +23,7 @@ const StoreList = (props) => {
         picture
       }
       items {
+        _id
         name
         quantity
         isBought

@@ -58,8 +58,8 @@ const DELETE_ITEM_MUTATION = `
   }
 `;
 const UPDATE_ITEM_MUTATION = `
-  mutation($storeId: ID! $itemId: ID!, $quantity: Int!) {
-    updateItem(storeId: $storeId, itemId: $itemId,quantity: $quantity) {
+  mutation($storeId: ID! $itemId: ID!, $quantity: Int!, $isBought: Boolean!) {
+    updateItem(storeId: $storeId, itemId: $itemId,quantity: $quantity, isBought: $isBought) {
       _id
       createdAt
       title
@@ -110,16 +110,22 @@ const UPDATE_ITEM_MUTATION = `
         dispatch({ type: "MODIFY_ITEM", payload: deleteItem });
         
     };
-    const handleUpdate = async (item,num) => {
-        const variables = { storeId: store._id, itemId: item._id, quantity: num };
-        const { updateItem } = await client.request(
-            UPDATE_ITEM_MUTATION,
-            variables
-        );
-        console.log(updateItem);
-        dispatch({ type: "MODIFY_ITEM", payload: updateItem });
-        
-    };
+  const handleUpdate = async (item, num) => {
+    console.log(item.quantity,"  ",num);
+    if (item.quantity > 0 || num >= 0) {
+      const variables = { storeId: store._id, itemId: item._id, quantity: num, isBought: !item.isBought };
+      const { updateItem } = await client.request(
+        UPDATE_ITEM_MUTATION,
+        variables
+      );
+      console.log(updateItem);
+      dispatch({ type: "MODIFY_ITEM", payload: updateItem });
+    } else if (item.quantity <1 && num <0) 
+    {
+      //console.log("Ask if quantity 0 to be DELETE");
+      handleDelete(item)
+    }
+  };
 
     useEffect(() => {
         // getStoreDetail(storeId)
@@ -137,7 +143,7 @@ const UPDATE_ITEM_MUTATION = `
             
                 <h4>your cart</h4>
                 {store.items && store.items.map(item => (
-                <div key={item._id}>
+                <div className="itemContainer" key={item._id} onDoubleClick={() => { handleUpdate(item,0) }}>
                     {item.name} [ {item.quantity} ]
                     <button onClick={() => { handleUpdate(item,-1) }}>-</button>
                     <button onClick={() => { handleUpdate(item,1) }}>+</button>&nbsp;&nbsp;

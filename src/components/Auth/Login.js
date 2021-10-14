@@ -43,6 +43,7 @@ const Login = ({ classes }) => {
   }
   return (
     <div className={classes.root}>
+      <h2>Welcome to Project JAM</h2>
       <GoogleLogin
         clientId="26159646015-300gism63ra07n09qteel35pu126vbif.apps.googleusercontent.com"
         onSuccess={onSuccess}
