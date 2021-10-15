@@ -4,6 +4,16 @@ import { Link } from 'react-router-dom'
 import { useClient } from "../../client";
 import Context from "../../context";
 
+import Box from '@mui/material/Box';
+import { List } from "@mui/material";
+import ListItemButton from '@mui/material/ListItem';
+import ListItemText from '@mui/material/ListItemText';
+import ListItemAvatar from '@mui/material/ListItemAvatar';
+import Avatar from '@mui/material/Avatar';
+import Divider from '@mui/material/Divider';
+import StorefrontIcon from '@mui/icons-material/Storefront';
+import { IconButton } from "@mui/material";
+import DragIndicatorIcon from '@mui/icons-material/DragIndicator';
 
 const StoreList = (props) => {
     const GET_STORES_QUERY = `
@@ -37,6 +47,7 @@ const StoreList = (props) => {
     }
   }
 `;
+    const [selectedIndex, setSelectedIndex] = React.useState(99);
     const client = useClient();
     const { state, dispatch } = useContext(Context);
 
@@ -52,8 +63,10 @@ const StoreList = (props) => {
             payload: getStores
         });
     };
-    const handleClick = (store) => {
+    const handleListItemClick = (store, index) => {
         console.log("Clicked !!!");
+        setSelectedIndex(index);
+
         dispatch({
             type: "SET_STORE",
             payload: store
@@ -61,16 +74,36 @@ const StoreList = (props) => {
       }
 
     return (
-        <>
-            <h3>Your Store List</h3>
-            {state.stores.map(store => (
-                <div key={store._id} onClick={() => { handleClick(store) }} >
-                    <li >{store.title} {store.content}
-                        <Link to={`/${store._id}`}>  ::: </Link>
-                    </li>
-                
-                </div>
-            ))}
+        <>        
+        <Box sx={{ display: 'flex', my: 2, flexDirection: 'column', alignItems: 'center' }} >
+
+          <h3>Your Store List</h3>
+
+          <List component="nav" sx={{ width: '100%', maxWidth: 300, bgcolor: 'background.paper', }} >
+          {state.stores.map( (store, index) => (
+            <Link to= {`/${store._id}`} >
+            <div>
+            <ListItemButton key={store._id} selected={selectedIndex === index}
+                onClick={() => handleListItemClick(store, index)}
+                secondaryAction={
+                  <IconButton edge="end" aria-label="view">
+                    <DragIndicatorIcon />
+                  </IconButton>
+                }
+              >
+              <ListItemAvatar>
+                <Avatar>
+                  <StorefrontIcon />
+                </Avatar>
+              </ListItemAvatar>
+              <ListItemText  primary={store.title} secondary={store.content} />
+            </ListItemButton>
+          <Divider  />
+          </div>
+          </Link>
+          ))}
+          </List>
+        </Box>
         </>
     )
 }

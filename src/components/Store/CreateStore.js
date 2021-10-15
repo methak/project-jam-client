@@ -1,8 +1,11 @@
 import React, { useState, useContext } from "react";
 
+import Box from '@mui/material/Box';
+import TextField from '@mui/material/TextField';
+import Button from '@mui/material/Button';
+
 import Context from "../../context";
 import { useClient } from "../../client"
-
 
 const CreateStore = () => {
     const CREATE_STORE_MUTATION = `
@@ -65,21 +68,22 @@ const CreateStore = () => {
     };
 
       return (
-          <>
-            <form onSubmit={handleSubmit}>
-            <p>
-              <label htmlFor="title">Title</label>
-              <input name="title" id="title" value={title} onChange={e => setTitle(e.target.value)} />
-            </p>
-            <p>
-              <label htmlFor="content">Content</label>
-              <input name="content" id="content" value={content} onChange={e => setContent(e.target.value)} />
-            </p>
-            
-              <input type="submit" value="Create store" onClick={handleSubmit}/>
-            
-          </form>
-          </>
+        <Box sx={{ display: 'flex', justifyContent: 'center'}}>
+          <Box component="form" onSubmit={handleSubmit}
+            sx={{ '& .MuiTextField-root': { m: 1, width: '25ch' }, p: 4, mt: 2, bgcolor: 'white'}}
+            noValidate
+            autoComplete="off">
+            <div>
+              <TextField name="title" id="title" label="Store Name" onChange={e => setTitle(e.target.value)} />
+            </div>
+            <div>
+              <TextField name="content" id="content" label="Address" onChange={e => setContent(e.target.value)} />
+            </div>
+            <Box sx={{ display: 'flex', justifyContent: 'flex-end', m:1}}>
+              <Button variant="outlined" type="submit">Create</Button>
+            </Box>
+          </Box>
+        </Box>
       )
 }
 export default CreateStore

@@ -1,17 +1,28 @@
 import React from "react";
-//import withRoot from "../withRoot";
+
+import CssBaseline from '@mui/material/CssBaseline';
+import Container from '@mui/material/Container';
+import Box from '@mui/material/Box';
+
 import Header from "./components/Header";
-import "../src/App.css"
-import CreateStore from "./components/Store/CreateStore";
-import StoreList
- from "./components/Store/StoreList";
+import StoreIndex from "./components/Store/StoreIndex";
+import Map from "./components/Map";
+
 const App = () => {
   return (
-    <div >
-      <Header />
-      <CreateStore />
-      <StoreList />
-    </div>);
+    <>
+      <CssBaseline />
+      <Container maxWidth="m">
+          <Header />
+          
+          <Box sx={{ display: 'grid', gap: 4, gridTemplateColumns: 'repeat(2, 1fr)', }}>
+            <StoreIndex />
+            <Map />
+          </Box>
+        
+      </Container>
+    </>
+    )
 };
 
 export default App;

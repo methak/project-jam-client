@@ -9,6 +9,7 @@ import reducer from "./reducer";
 import VerifiedRoute from "./VerifiedRoute";
 
 import StoreDetail from "./components/Store/StoreDetail";
+import ShoppingDetail from "./components/Store/ShoppingDetail";
 //import "mapbox-gl/dist/mapbox-gl.css";
 import * as serviceWorker from "./serviceWorker";
 
@@ -25,6 +26,8 @@ const Root = () => {
         
         <Route path="/login" component={Splash} />
         <VerifiedRoute exact path="/:storeId" component={StoreDetail}/>
+        <VerifiedRoute exact path="/:storeId/shopping" component={ShoppingDetail}/>
+
       </Switch>
       </Context.Provider>
     </Router>

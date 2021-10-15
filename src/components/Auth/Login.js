@@ -2,8 +2,9 @@ import React, { useContext } from "react";
 import { GraphQLClient } from 'graphql-request'
 
 import { GoogleLogin } from 'react-google-login'
-import { withStyles } from "@material-ui/core/styles";
-// import Typography from "@material-ui/core/Typography";
+import CssBaseline from '@mui/material/CssBaseline';
+import Container from '@mui/material/Container';
+import Box from '@mui/material/Box';
 
 import Context from "../../context";
 
@@ -42,27 +43,29 @@ const Login = ({ classes }) => {
 
   }
   return (
-    <div className={classes.root}>
-      <h2>Welcome to Project JAM</h2>
-      <GoogleLogin
-        clientId="26159646015-300gism63ra07n09qteel35pu126vbif.apps.googleusercontent.com"
-        onSuccess={onSuccess}
-        onFailure={onFailure}
-        //isSignedIn={true}
-        theme="dark"
-      />
-    </div>
+    <>
+      <CssBaseline />
+      <Container maxWidth="m">
+        <Box sx={{ display: 'flex', bgcolor: '#faf0e7', height: '100vh',my: 2, flexDirection: 'column' ,alignItems: 'center', justifyContent: 'center' }} >
+          <Box sx={{ display: 'flex', bgcolor: '#ffffff', height: '50%', p: 5, pt:14, boxShadow: 1, borderRadius: 2 ,flexDirection: 'column' ,alignItems: 'center' }}>
+          <Box sx={{ pb:2 }}><h2>Welcome to Project JAM</h2></Box>
+          
+          <Box> 
+          <GoogleLogin
+            clientId="26159646015-300gism63ra07n09qteel35pu126vbif.apps.googleusercontent.com"
+            onSuccess={onSuccess}
+            onFailure={onFailure}
+            //isSignedIn={true}
+            theme= 'dark'
+          /></Box>
+          
+         </Box>
+        </Box>
+      </Container>
+    </>
   )
 };
 
-const styles = {
-  root: {
-    height: "100vh",
-    display: "flex",
-    justifyContent: "center",
-    flexDirection: "column",
-    alignItems: "center"
-  }
-};
 
-export default withStyles(styles)(Login);
+
+export default Login;

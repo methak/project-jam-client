@@ -1,5 +1,6 @@
 .wrapper {
     display: flex;
+    background-color: #f9efe0;
     
     flex-wrap: wrap;
 }
@@ -14,5 +15,8 @@
     
     border : 1px solid paleturquoise;
     padding: 5px 10px;
-
 }
+
+.itemContainer.is-bought {
+    background-color: lightgreen
+  }

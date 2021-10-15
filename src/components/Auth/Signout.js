@@ -1,6 +1,7 @@
 import React, { useContext } from "react";
 import { GoogleLogout } from "react-google-login";
 
+import Button from '@mui/material/Button';
 import Context from "../../context";
 
 const Signout = () => {
@@ -15,9 +16,8 @@ const Signout = () => {
             onLogoutSuccess = { onSignout } 
             //buttonText="Signout"
             render= {( { onClick }) => (
-                <button onClick={ onClick }>
-                    Signout
-                </button>
+                <Button color="inherit" onClick={ onClick }>Sign out</Button>
+                
             ) }
         />
     )

@@ -1,4 +1,5 @@
 import React, { useEffect, useContext } from 'react'
+import { Link } from 'react-router-dom'
 
 import Context from '../../context';
 import Header from '../Header'
@@ -143,14 +144,16 @@ const UPDATE_ITEM_MUTATION = `
             
                 <h4>your cart</h4>
                 {store.items && store.items.map(item => (
-                <div className="itemContainer" key={item._id} onDoubleClick={() => { handleUpdate(item,0) }}>
+                  <div className={`itemContainer ${item.isBought ? 'is-bought' : ''}`} key={item._id}
+                    onDoubleClick={() => { handleUpdate(item, 0) }}>
                     {item.name} [ {item.quantity} ]
-                    <button onClick={() => { handleUpdate(item,-1) }}>-</button>
-                    <button onClick={() => { handleUpdate(item,1) }}>+</button>&nbsp;&nbsp;
+                    <button onClick={() => { handleUpdate(item, -1) }}>-</button>
+                    <button onClick={() => { handleUpdate(item, 1) }}>+</button>&nbsp;&nbsp;
                     <button onClick={() => { handleDelete(item) }}>x</button>
-                </div>
+                  </div>
                 
                 ))}
+                <Link to={`/${store._id}/shopping`}>  ::: </Link>
             </div>
             <div className="container">
                 <h2>New Item Form</h2>
@@ -158,6 +161,7 @@ const UPDATE_ITEM_MUTATION = `
                 <div><button onClick={() => { handleClick(seed) }} key={i}>{seed}</button></div>
                 
                 ))}
+                
             </div>
         </div>
         </>
