@@ -80,28 +80,28 @@ const StoreList = (props) => {
           <h3>Your Store List</h3>
 
           <List component="nav" sx={{ width: '100%', maxWidth: 300, bgcolor: 'background.paper', }} >
-          {state.stores.map( (store, index) => (
-            <Link to= {`/${store._id}`} >
-            <div>
-            <ListItemButton key={store._id} selected={selectedIndex === index}
-                onClick={() => handleListItemClick(store, index)}
-                secondaryAction={
-                  <IconButton edge="end" aria-label="view">
-                    <DragIndicatorIcon />
-                  </IconButton>
-                }
-              >
-              <ListItemAvatar>
-                <Avatar>
-                  <StorefrontIcon />
-                </Avatar>
-              </ListItemAvatar>
-              <ListItemText  primary={store.title} secondary={store.content} />
-            </ListItemButton>
-          <Divider  />
-          </div>
-          </Link>
-          ))}
+            {state.stores.map((store, index) => (
+              <Link to={`/${store._id}`} >
+                <div>
+                  <ListItemButton key={store._id} selected={selectedIndex === index}
+                    onClick={() => handleListItemClick(store, index)}
+                    secondaryAction={
+                      <IconButton edge="end" aria-label="view">
+                        <DragIndicatorIcon />
+                      </IconButton>
+                    }
+                  >
+                    <ListItemAvatar>
+                      <Avatar>
+                        <StorefrontIcon />
+                      </Avatar>
+                    </ListItemAvatar>
+                    <ListItemText primary={store.title} secondary={store.content} />
+                  </ListItemButton>
+                  <Divider />
+                </div>
+              </Link>
+            ))}
           </List>
         </Box>
         </>

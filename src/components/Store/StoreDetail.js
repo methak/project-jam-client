@@ -3,9 +3,23 @@ import { Link } from 'react-router-dom'
 
 import Context from '../../context';
 import Header from '../Header'
-import './store.css'
+
 import { useClient } from '../../client' 
 import { CREATE_ITEM_MUTATION, DELETE_ITEM_MUTATION, UPDATE_ITEM_MUTATION} from '../../graphql'
+
+import Box from '@mui/material/Box';
+import Grid from '@mui/material/Grid';
+import List from '@mui/material/List';
+import ListItem from '@mui/material/ListItem';
+import ListItemText from '@mui/material/ListItemText';
+import IconButton from '@mui/material/IconButton';
+import HighlightOffIcon from '@mui/icons-material/HighlightOff';
+import ToggleButton from '@mui/material/ToggleButton';
+import ToggleButtonGroup from '@mui/material/ToggleButtonGroup';
+import { Button, ButtonGroup} from '@mui/material';
+import AddCircleIcon from '@mui/icons-material/AddCircle';
+import RemoveCircleIcon from '@mui/icons-material/RemoveCircle';
+
 
 function StoreDetail() {
 
@@ -61,35 +75,55 @@ function StoreDetail() {
     return (
         <>
         <Header />
-        <div className="wrapper">
-            
-            <div className="container">
-                
+        <Box sx={{ flexGrow: 1, bgcolor: '#faf0e7', height: 800 }}>
+        <Grid container spacing={2}>
+            <Grid item xs={4} sx={{ textAlign: 'center', mx: 4}} >
                 <h2>Store Detail</h2>
-                <p>{store.title}   {store.content}</p>
-            
-                <h4>your cart</h4>
+                <h3>{store.title}</h3>   
+                {/* <h5>{store.content}</h5> 
+                <h4>your cart</h4>*/}
+
+                <List component="nav" dense='true' sx={{ width: '100%', minWidth: 300, bgcolor: 'background.paper', }} >
                 {store.items && store.items.map(item => (
-                  <div className={`itemContainer ${item.isBought ? 'is-bought' : ''}`} key={item._id}
-                    onDoubleClick={() => { handleUpdate(item, 0) }}>
-                    {item.name} [ {item.quantity} ]
-                    <button onClick={() => { handleUpdate(item, -1) }}>-</button>
-                    <button onClick={() => { handleUpdate(item, 1) }}>+</button>&nbsp;&nbsp;
-                    <button onClick={() => { handleDelete(item) }}>x</button>
+                  <div>
+                    <ListItem secondaryAction={
+                    <IconButton edge="end" aria-label="delete" onClick={() => { handleDelete(item) }}>
+                      <HighlightOffIcon />
+                    </IconButton>
+                  }>
+                  <ListItemText >
+                        <div className={`itemContainer ${item.isBought ? 'is-bought' : ''}`} key={item._id}
+                          onDoubleClick={() => { handleUpdate(item, 0) }}>
+                          {item.name} [ {item.quantity} ]
+                          {/*                     
+                    <IconButton size='small' onClick={() => { handleUpdate(item, 1) }}><AddCircleIcon /></IconButton>
+                    <IconButton size='small' onClick={() => { handleUpdate(item, -1) }}><RemoveCircleIcon /></IconButton> 
+                    */}
+
+                          <IconButton edge="end" aria-label="delete" onClick={() => { handleUpdate(item, 1) }}>
+                            <AddCircleIcon />
+                          </IconButton>
+                          <IconButton edge="end" aria-label="delete" onClick={() => { handleUpdate(item, -1) }}>
+                            <RemoveCircleIcon />
+                          </IconButton>
+                        </div>
+                      </ListItemText>
+                  </ListItem >
                   </div>
-                
                 ))}
+                
                 <Link to={`/${store._id}/shopping`}>  ::: </Link>
-            </div>
-            <div className="container">
+                </List>
+            </Grid>
+            <Grid item xs={6} sx={{ textAlign: 'center'}} >
                 <h2>New Item Form</h2>
                 {itemSeed.map((seed, i) => (
                 <div><button onClick={() => { handleClick(seed) }} key={i}>{seed}</button></div>
                 
                 ))}
-                
-            </div>
-        </div>
+            </Grid>
+            </Grid>
+        </Box>
         </>
     )
 }
