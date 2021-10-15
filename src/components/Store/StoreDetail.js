@@ -5,84 +5,10 @@ import Context from '../../context';
 import Header from '../Header'
 import './store.css'
 import { useClient } from '../../client' 
-//import { useClient } from "../../client";
+import { CREATE_ITEM_MUTATION, DELETE_ITEM_MUTATION, UPDATE_ITEM_MUTATION} from '../../graphql'
 
 function StoreDetail() {
-const CREATE_ITEM_MUTATION = `
-  mutation($storeId: ID! $name: String!) {
-    createItem(storeId: $storeId, name: $name) {
-      _id
-      createdAt
-      title
-      content
-      image
-      latitude
-      longitude
-      shopper {
-        _id
-        name
-      }
-      items {
-        _id  
-        name
-        quantity
-        isBought
-        createdAt
-        
-      }
-    }
-  }
-`;
-const DELETE_ITEM_MUTATION = `
-  mutation($storeId: ID! $itemId: ID!) {
-    deleteItem(storeId: $storeId, itemId: $itemId) {
-      _id
-      createdAt
-      title
-      content
-      image
-      latitude
-      longitude
-      shopper {
-        _id
-        name
-      }
-      items {
-        _id  
-        name
-        quantity
-        isBought
-        createdAt
-        
-      }
-    }
-  }
-`;
-const UPDATE_ITEM_MUTATION = `
-  mutation($storeId: ID! $itemId: ID!, $quantity: Int!, $isBought: Boolean!) {
-    updateItem(storeId: $storeId, itemId: $itemId,quantity: $quantity, isBought: $isBought) {
-      _id
-      createdAt
-      title
-      content
-      image
-      latitude
-      longitude
-      shopper {
-        _id
-        name
-      }
-      items {
-        _id  
-        name
-        quantity
-        isBought
-        createdAt
-        
-      }
-    }
-  }
-`;
+
     const { state, dispatch } = useContext(Context);
     const client = useClient();
 
