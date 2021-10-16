@@ -18,14 +18,12 @@ function Items() {
 
    
     const handleClick = async (item) => {
-
         const variables = { storeId: store._id, name: item };
         const { createItem } = await client.request(
             CREATE_ITEM_MUTATION,
             variables
         );
         dispatch({ type: "MODIFY_ITEM", payload: createItem });
-        
     }
 
     return (
@@ -94,9 +92,7 @@ function Items() {
             </Stack>
             )}
             &nbsp;&nbsp;
-            
                 <Box sx={{ bt: 2 }}>
-
                     <Stack direction="row" spacing={1} 
                         sx={{ display: 'flex',flexWrap: 'wrap',
                             p: 1, m: 1, bgcolor: 'background.paper', maxWidth: 500 , }}>
@@ -107,51 +103,13 @@ function Items() {
                 </Box>
             </Box>
         </div>
-        
     )
 }
 const itemsArray = ["Strawberry", "Blueberry", "Mango", "Raspberry",
-"Oranges",
-"Apples",
-"Bananas",
-"Lettuce",
-"Tomatoes",
-"Squash",
-"Celery",
-"Cucumber",
-"Mushrooms",
-"Milk" ,
-"Cheese",
-"Eggs",
-"Cottage cheese",
-"Sour cream",
-"Yogurt",
-"Beef",
-"Poultry",
-"Ham",
-"Seafood",
-"Lunch meat",
-"Soda",
-"Juice",
-"Coffee",
-"Tea",
-"Water",
-"Noodles",
-"Rice",
-"Canned",
-"Dry mix",
-"Bread",
-"Bagels",
-"Muffins",
-"Cake",
-"Potato chips",
-"Pretzels",
-"Ice cream",
-"Cookies",
-"Paper plates",
-"Napkins",
-"Garbage bags",
-"Detergent",]
-
+"Oranges","Apples","Bananas","Lettuce","Tomatoes","Squash","Celery","Cucumber","Mushrooms",
+"Milk" ,"Cheese","Eggs","Cottage cheese","Sour cream","Yogurt","Beef","Poultry",
+"Ham","Seafood","Lunch meat","Soda","Juice","Coffee","Tea","Water","Noodles","Rice","Canned",
+"Dry mix","Bread","Bagels","Muffins","Cake","Potato chips","Pretzels","Ice cream","Cookies",
+"Paper plates","Napkins","Garbage bags","Detergent",]
 
 export default Items

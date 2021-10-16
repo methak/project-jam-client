@@ -15,10 +15,10 @@ import ListItem from '@mui/material/ListItem';
 import ListItemText from '@mui/material/ListItemText';
 import IconButton from '@mui/material/IconButton';
 import HighlightOffIcon from '@mui/icons-material/HighlightOff';
-
+import Stack from '@mui/material/Stack';
 import AddCircleIcon from '@mui/icons-material/AddCircle';
 import RemoveCircleIcon from '@mui/icons-material/RemoveCircle';
-
+import StorefrontIcon from '@mui/icons-material/Storefront';
 
 function StoreDetail() {
 
@@ -63,9 +63,12 @@ function StoreDetail() {
         <Grid container spacing={2}>
             <Grid item xs={4} sx={{ textAlign: 'center', mx: 4 }} >
               <h2>Store Detail</h2>
-              <h3>{store.title}</h3>
-              {/* <h5>{store.content}</h5> 
-                <h4>your cart</h4>*/}
+              <Stack direction="row" spacing={1} sx={{ justifyContent: 'center', mb: 1 }}>
+              <StorefrontIcon /> 
+                <h3>{store.title}</h3>
+              </Stack>
+              {/* <h5>{store.content}</h5> */}
+             
 
               <List component="nav" dense='true' sx={{ width: '100%', minWidth: 300, bgcolor: 'background.paper', }} >
                 {store.items && store.items.map(item => (
@@ -76,8 +79,7 @@ function StoreDetail() {
                       </IconButton>
                     }>
                       <ListItemText >
-                        <div className={`itemContainer ${item.isBought ? 'is-bought' : ''}`} key={item._id}
-                          onDoubleClick={() => { handleUpdate(item, 0) }}>
+                        <div  key={item._id}>
                           {item.name} [ {item.quantity} ]
 
                           <IconButton edge="end" aria-label="delete" onClick={() => { handleUpdate(item, 1) }}>

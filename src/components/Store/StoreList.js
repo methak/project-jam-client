@@ -6,6 +6,7 @@ import Context from "../../context";
 
 import Box from '@mui/material/Box';
 import { List } from "@mui/material";
+import ListItem from '@mui/material/ListItem';
 import ListItemButton from '@mui/material/ListItem';
 import ListItemText from '@mui/material/ListItemText';
 import ListItemAvatar from '@mui/material/ListItemAvatar';
@@ -76,33 +77,27 @@ const StoreList = (props) => {
     return (
         <>        
         <Box sx={{ display: 'flex', my: 2, flexDirection: 'column', alignItems: 'center' }} >
-
           <h3>Your Store List</h3>
-
-          <List component="nav" sx={{ width: '100%', maxWidth: 300, bgcolor: 'background.paper', }} >
+            <List sx={{ width: '100%', maxWidth: 300, bgcolor: 'background.paper', }} >
             {state.stores.map((store, index) => (
               <Link to={`/${store._id}`} >
-                <div>
-                  <ListItemButton key={store._id} selected={selectedIndex === index}
-                    onClick={() => handleListItemClick(store, index)}
-                    secondaryAction={
-                      <IconButton edge="end" aria-label="view">
-                        <DragIndicatorIcon />
-                      </IconButton>
-                    }
-                  >
-                    <ListItemAvatar>
-                      <Avatar>
-                        <StorefrontIcon />
-                      </Avatar>
-                    </ListItemAvatar>
-                    <ListItemText primary={store.title} secondary={store.content} />
-                  </ListItemButton>
-                  <Divider />
-                </div>
+                <ListItem onClick={() => handleListItemClick(store, index)}
+                  secondaryAction={
+                    <IconButton edge="end" aria-label="view">
+                      <DragIndicatorIcon />
+                    </IconButton>
+                  }>
+                  <ListItemAvatar>
+                    <Avatar>
+                      <StorefrontIcon />
+                    </Avatar>
+                  </ListItemAvatar>
+                  <ListItemText primary={store.title} secondary={store.content} />
+                  </ListItem>
+                <Divider />
               </Link>
-            ))}
-          </List>
+              ))}
+            </List>
         </Box>
         </>
     )
