@@ -4,51 +4,90 @@ import { useClient } from '../../client'
 import { CREATE_ITEM_MUTATION } from '../../graphql'
 
 import TextField from '@mui/material/TextField';
-import Autocomplete from '@mui/material/Autocomplete';
+import Autocomplete, {createFilterOptions} from '@mui/material/Autocomplete';
 import { Stack, Chip } from '@mui/material';
 import { Box } from '@mui/system';
-import Divider from '@mui/material/Divider';
 
 function Items() {
     const { state, dispatch } = useContext(Context);
     const client = useClient();
-    const [itemValue, setItemValue] = useState("");
-    const [inputValue, setInputValue] = React.useState("");
+    const [itemValue, setItemValue] = useState(null);
 
     const store = state.currentStore
-    // let catchItems = ""
-    //Test seedind item data
-    // const itemSeed = ["Mango","kiwi","Apple","Banana","Orange"]
+    const filter = createFilterOptions();
 
-    const handleClick = async (seed) => {
+   
+    const handleClick = async (item) => {
 
-        const variables = { storeId: store._id, name: seed };
+        const variables = { storeId: store._id, name: item };
         const { createItem } = await client.request(
             CREATE_ITEM_MUTATION,
             variables
         );
         dispatch({ type: "MODIFY_ITEM", payload: createItem });
         
-    };
+    }
 
     return (
         <div>
             <Box sx={{display: 'flex', flexDirection: 'column', alignItems: 'center',}}>
             <h2>New Item Form</h2>
-            <Autocomplete
-                value={itemValue}
-                onChange={(event, newValue) => {
-                    setItemValue(newValue);
-                }}
-                inputValue={inputValue}
-                onInputChange={(event, newInputValue) => {
-                    setInputValue(newInputValue);
-                }}
-                id="controllable-states-demo"
-                options={itemsArray}
-                sx={{ width: 300 }}
-                renderInput={(params) => <TextField {...params} label="Items" />} 
-            /> &nbsp;
+                <Autocomplete
+                    value={itemValue}
+                    onChange={(event, newValue) => {
+                        if (typeof newValue === 'string') {
+                            setItemValue(
+                                newValue
+                            );
+                        } else if (newValue && newValue.inputValue) {
+                            // Create a new value from the user input
+                            setItemValue(
+                                newValue.inputValue
+                            );
+                        } else {
+                            setItemValue(newValue);
+                        }
+                    }}
+                    filterOptions={(options, params) => {
+                        const filtered = filter(options, params);
+
+                        const { inputValue } = params;
+                        // Suggest the creation of a new value
+                        const isExisting = options.some((option) => inputValue === option);
+                        if (inputValue !== '' && !isExisting) {
+                            filtered.push(
+                                inputValue,
+                                // `Add "${inputValue}"`
+                            );
+                        }
+                        return filtered;
+                    }}
+                    selectOnFocus
+                    clearOnBlur
+                    handleHomeEndKeys
+                    id="free-solo-with-text-demo"
+                    options={itemsArray}
+                    getOptionLabel={(option) => {
+                        // Value selected with enter, right from the input
+                        if (typeof option === 'string') {
+                            return option;
+                        }
+                        // Add "xxx" option created dynamically
+                        if (option.inputValue) {
+                            return option.inputValue;
+                        }
+                        // Regular option
+                        return option.title;
+                    }}
+                    renderOption={(props, option) => <li {...props}>{option}</li>}
+                    sx={{ width: 300 }}
+                    freeSolo
+                    renderInput={(params) => (
+                        <TextField {...params} label="Items" />
+                    )}
+                />
+            
+            &nbsp;
             {itemValue && (
             <Stack direction="row" spacing={1}>
                 <Chip label= "Add Item" variant="outlined" onClick={() => {handleClick(itemValue)}} />    
@@ -58,11 +97,9 @@ function Items() {
             
                 <Box sx={{ bt: 2 }}>
 
-                    <Stack direction="row" spacing={1} sx={{ display: 'flex',flexWrap: 'wrap',
-          p: 1,
-          m: 1,
-          bgcolor: 'background.paper',
-          maxWidth: 500 , }}>
+                    <Stack direction="row" spacing={1} 
+                        sx={{ display: 'flex',flexWrap: 'wrap',
+                            p: 1, m: 1, bgcolor: 'background.paper', maxWidth: 500 , }}>
                         {itemsArray.map((item, index) => (
                             <Chip key={index} label={item} variant="outlined" onClick={() => { handleClick(item) }} />
                         ))}
