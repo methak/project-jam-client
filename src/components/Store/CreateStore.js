@@ -6,34 +6,9 @@ import Button from '@mui/material/Button';
 
 import Context from "../../context";
 import { useClient } from "../../client"
+import { CREATE_STORE_MUTATION } from '../../graphql'
 
 const CreateStore = () => {
-    const CREATE_STORE_MUTATION = `
-  mutation($title: String, $image: String, $content: String, $latitude: Float, $longitude: Float) {
-    createStore(input: {
-      title: $title,
-      image: $image,
-      content: $content,
-      latitude: $latitude,
-      longitude: $longitude
-    }) {
-      _id
-      createdAt
-      title
-      image
-      content
-      longitude
-      latitude
-      shopper {
-        _id
-        name
-        email
-        picture
-      }
-    }
-  }
-`;
-
     const client = useClient();
     const { state, dispatch } = useContext(Context);
     const [title, setTitle] = useState("");
@@ -68,9 +43,9 @@ const CreateStore = () => {
     };
 
       return (
-        <Box sx={{ display: 'flex', justifyContent: 'center'}}>
+        <Box sx={{ display: 'flex', justifyContent: 'center', }}>
           <Box component="form" onSubmit={handleSubmit}
-            sx={{ '& .MuiTextField-root': { m: 1, width: '25ch' }, p: 4, mt: 2, bgcolor: 'white'}}
+            sx={{ '& .MuiTextField-root': { m: 1, width: '25ch' }, p: 4, mt: 2, bgcolor: 'white', borderRadius: 1}}
             noValidate
             autoComplete="off">
             <div>

@@ -7,7 +7,6 @@ import Context from "../../context";
 import Box from '@mui/material/Box';
 import { List } from "@mui/material";
 import ListItem from '@mui/material/ListItem';
-import ListItemButton from '@mui/material/ListItem';
 import ListItemText from '@mui/material/ListItemText';
 import ListItemAvatar from '@mui/material/ListItemAvatar';
 import Avatar from '@mui/material/Avatar';
@@ -16,40 +15,11 @@ import StorefrontIcon from '@mui/icons-material/Storefront';
 import { IconButton } from "@mui/material";
 import DragIndicatorIcon from '@mui/icons-material/DragIndicator';
 
+import { GET_STORES_QUERY } from '../../graphql'
+
 const StoreList = (props) => {
-    const GET_STORES_QUERY = `
-  {
-    getStores {
-      _id
-      createdAt
-      title
-      image
-      content
-      latitude
-      longitude
-      shopper {
-        _id
-        name
-        email
-        picture
-      }
-      items {
-        _id
-        name
-        quantity
-        isBought
-        createdAt
-        shopper {
-          _id
-          name
-          picture
-        }
-      }
-    }
-  }
-`;
-    const [selectedIndex, setSelectedIndex] = React.useState(99);
-    const client = useClient();
+  const [selectedIndex, setSelectedIndex] = React.useState(99);
+  const client = useClient();
     const { state, dispatch } = useContext(Context);
 
     useEffect(() => {
@@ -76,9 +46,9 @@ const StoreList = (props) => {
 
     return (
         <>        
-        <Box sx={{ display: 'flex', my: 2, flexDirection: 'column', alignItems: 'center' }} >
+        <Box sx={{ display: 'flex', my: 2, flexDirection: 'column', alignItems: 'center',}} >
           <h3>Your Store List</h3>
-            <List sx={{ width: '100%', maxWidth: 300, bgcolor: 'background.paper', }} >
+            <List sx={{ width: '100%', maxWidth: 300, bgcolor: 'background.paper', borderRadius: 1 }} >
             {state.stores.map((store, index) => (
               <Link to={`/${store._id}`} >
                 <ListItem onClick={() => handleListItemClick(store, index)}

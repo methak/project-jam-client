@@ -29,7 +29,7 @@ function Items() {
     return (
         <div>
             <Box sx={{display: 'flex', flexDirection: 'column', alignItems: 'center',}}>
-            <h2>New Item Form</h2>
+            <h2>Shopping Items</h2>
                 <Autocomplete
                     value={itemValue}
                     onChange={(event, newValue) => {

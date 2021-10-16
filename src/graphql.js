@@ -1,3 +1,61 @@
+export const GET_STORES_QUERY = `
+{
+  getStores {
+    _id
+    createdAt
+    title
+    image
+    content
+    latitude
+    longitude
+    shopper {
+      _id
+      name
+      email
+      picture
+    }
+    items {
+      _id
+      name
+      quantity
+      isBought
+      createdAt
+      shopper {
+        _id
+        name
+        picture
+      }
+    }
+  }
+}
+`;
+
+export const CREATE_STORE_MUTATION = `
+  mutation($title: String, $image: String, $content: String, $latitude: Float, $longitude: Float) {
+    createStore(input: {
+      title: $title,
+      image: $image,
+      content: $content,
+      latitude: $latitude,
+      longitude: $longitude
+    }) {
+      _id
+      createdAt
+      title
+      image
+      content
+      longitude
+      latitude
+      shopper {
+        _id
+        name
+        email
+        picture
+      }
+    }
+  }
+`;
+
 export const CREATE_ITEM_MUTATION = `
   mutation($storeId: ID! $name: String!) {
     createItem(storeId: $storeId, name: $name) {
