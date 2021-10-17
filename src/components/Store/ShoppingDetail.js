@@ -124,6 +124,9 @@ function ShoppingDetail() {
                 </label>
               </Stack >
               </List>
+              <Link to={"/"} style={{ textDecoration: 'none' }}>
+                  <Button sx={{ mt: 2 }} variant="outlined" >Home</Button>
+                </Link>
             </Grid>
             {store.image ?
             <Grid item xs={4} sx={{ textAlign: 'center', mx: 4 }} >

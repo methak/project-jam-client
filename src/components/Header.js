@@ -9,6 +9,8 @@ import Typography from '@mui/material/Typography';
 
 import IconButton from '@mui/material/IconButton';
 import MenuIcon from '@mui/icons-material/Menu';
+import Avatar from '@mui/material/Avatar';
+import { lightGreen } from '@mui/material/colors';
 
 
 const Header = () => {
@@ -28,7 +30,10 @@ const Header = () => {
                     >
                         <MenuIcon />
                     </IconButton>
-                    <Typography variant="h6" component="div" sx={{ flexGrow: 1 }}>
+                    { currentUser.picture ?
+                    <Avatar alt= {currentUser.name} src={currentUser.picture}/> :
+                    <Avatar alt= {currentUser.name} sx={{ bgcolor: lightGreen[500] }}> {currentUser.name.charAt(0)} </Avatar>   }
+                    <Typography variant="h6" component="div" sx={{ flexGrow: 1, pl:2 }}>
                         Hello {currentUser.name}
                     </Typography>
                     
