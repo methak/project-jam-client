@@ -28,7 +28,7 @@ function Items() {
 
     return (
         <div>
-            <Box sx={{display: 'flex', flexDirection: 'column', alignItems: 'center',}}>
+            <Box sx={{display: 'flex', flexDirection: 'column', alignItems: 'center',minWidth: 300}}>
             <h2>Shopping Items</h2>
                 <Autocomplete
                     value={itemValue}
@@ -92,10 +92,10 @@ function Items() {
             </Stack>
             )}
             &nbsp;&nbsp;
-                <Box sx={{ bt: 2 }}>
+                <Box sx={{ bt: 2, }}>
                     <Stack direction="row" spacing={1} 
                         sx={{ display: 'flex',flexWrap: 'wrap',
-                            p: 1, m: 1, bgcolor: 'background.paper', maxWidth: 500 , }}>
+                            p: 1, m: 1, bgcolor: 'background.paper', maxWidth: 500 , borderRadius: 1 }}>
                         {itemsArray.map((item, index) => (
                             <Chip key={index} label={item} variant="outlined" onClick={() => { handleClick(item) }} />
                         ))}

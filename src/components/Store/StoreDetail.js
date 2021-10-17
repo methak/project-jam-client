@@ -13,21 +13,19 @@ import Grid from '@mui/material/Grid';
 import List from '@mui/material/List';
 import ListItem from '@mui/material/ListItem';
 import ListItemText from '@mui/material/ListItemText';
+import Button from '@mui/material/Button';
 import IconButton from '@mui/material/IconButton';
 import HighlightOffIcon from '@mui/icons-material/HighlightOff';
 import Stack from '@mui/material/Stack';
 import AddCircleIcon from '@mui/icons-material/AddCircle';
 import RemoveCircleIcon from '@mui/icons-material/RemoveCircle';
 import StorefrontIcon from '@mui/icons-material/Storefront';
+import ShoppingCartIcon from '@mui/icons-material/ShoppingCart';
 
 function StoreDetail() {
-
     const { state, dispatch } = useContext(Context);
     const client = useClient();
-
     const store = state.currentStore
-
-    
     
     const handleDelete = async (item) => {
         const variables = { storeId: store._id, itemId: item._id };
@@ -69,8 +67,7 @@ function StoreDetail() {
               </Stack>
               {/* <h5>{store.content}</h5> */}
              
-
-              <List component="nav" dense='true' sx={{ width: '100%', minWidth: 300, bgcolor: 'background.paper', }} >
+              <List component="nav" dense='true' sx={{ width: '100%', minWidth: 300, bgcolor: 'background.paper', borderRadius: 1 }} >
                 {store.items && store.items.map(item => (
                   <div>
                     <ListItem secondaryAction={
@@ -94,7 +91,9 @@ function StoreDetail() {
                   </div>
                 ))}
 
-                <Link to={`/${store._id}/shopping`}>  ::: </Link>
+                <Link to={`/${store._id}/shopping`} style={{ textDecoration: 'none' }}>
+                <Button variant="outlined" startIcon={<ShoppingCartIcon />}>Go Shopping</Button>                
+                </Link>
               </List>
             </Grid>
             <Grid item xs={6} sx={{ textAlign: 'center'}} >

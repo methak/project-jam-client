@@ -133,3 +133,28 @@ mutation($storeId: ID! $itemId: ID!, $quantity: Int!, $isBought: Boolean!) {
   }
 }
 `;
+export const UPDATE_STORE_MUTATION = `
+mutation($storeId: ID! $image: String) {
+  updateStore(storeId: $storeId, image: $image) {
+    _id
+    createdAt
+    title
+    content
+    image
+    latitude
+    longitude
+    shopper {
+      _id
+      name
+    }
+    items {
+      _id  
+      name
+      quantity
+      isBought
+      createdAt
+      
+    }
+  }
+}
+`;

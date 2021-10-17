@@ -50,7 +50,7 @@ const StoreList = (props) => {
           <h3>Your Store List</h3>
             <List sx={{ width: '100%', maxWidth: 300, bgcolor: 'background.paper', borderRadius: 1 }} >
             {state.stores.map((store, index) => (
-              <Link to={`/${store._id}`} >
+              <Link to={`/${store._id}`} style={{ textDecoration: 'none' }} >
                 <ListItem onClick={() => handleListItemClick(store, index)}
                   secondaryAction={
                     <IconButton edge="end" aria-label="view">
