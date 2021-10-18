@@ -10,7 +10,7 @@ Live Demo : [project-jam](https://project-jam.surge.sh/)  required* google accou
 ReactJS / Material UI / Google OAuth / Axios / GraphQl / ApolloGraphQL Server / MongoDB / Node.js
 
 ## ERD
-(../main/JAM-ERD.png)
+![](../main/JAM-ERD.png)
 
 ## Project Setup and Api Requiredment
 - Google OAuth
@@ -24,7 +24,7 @@ ReactJS / Material UI / Google OAuth / Axios / GraphQl / ApolloGraphQL Server / 
 - Upload Receipt image
 
 ## Wireframe
-(../main/jam-wireframe.png)
+![](../main/jam-wireframe.png)
 
 ### `code snippet`
 
