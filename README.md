@@ -1,9 +1,9 @@
 # Project JAM
 
 This application build to helping user for create a grocery shopping list.
-They have 2 repositories Client and Server 
-Client : [https://github.com/methak/project-jam-client](https://github.com/methak/project-jam-client)
-Server : [https://github.com/methak/project-jam-server](https://github.com/methak/project-jam-server)
+They have 2 repositories Client and Server .\
+Client : [https://github.com/methak/project-jam-client](https://github.com/methak/project-jam-client).\
+Server : [https://github.com/methak/project-jam-server](https://github.com/methak/project-jam-server).\
 Live Demo : [project-jam](https://project-jam.surge.sh/) required* google account for login
 
 ## Technologies Used
