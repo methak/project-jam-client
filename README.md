@@ -27,11 +27,14 @@ ReactJS / Material UI / Google OAuth / Axios / GraphQL / ApolloGraphQL Server / 
 ![](../main/jam-wireframe.png)
 
 ### `code snippet`
-[Handle Google USer Login](../main/google_login.png)
+#### Handle User Login
+![Handle Google USer Login](../main/google_login.png)
 
-[How to Verify Route](../main/verify_router.png)
+#### Verify Route
+![How to Verify Route](../main/verify_router.png)
 
-[Axios Post Image](../main/axios_post_image.png)
+#### Post Image on Cloudinary
+![Axios Post Image](../main/axios_post_image.png)
 
 ### Future Work
 - Fetch API from a real grocery company to retrieve live market data to show user.
