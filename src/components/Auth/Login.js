@@ -7,6 +7,7 @@ import Container from '@mui/material/Container';
 import Box from '@mui/material/Box';
 import { BASE_URL } from "../../client";
 import Context from "../../context";
+import logo from '../../store.png';
 
 const ME_QUERY = `
 {
@@ -47,7 +48,8 @@ const Login = ({ classes }) => {
       <CssBaseline />
       <Container maxWidth="m">
         <Box sx={{ display: 'flex', bgcolor: '#faf0e7', height: '100vh',my: 2, flexDirection: 'column' ,alignItems: 'center', justifyContent: 'center' }} >
-          <Box sx={{ display: 'flex', bgcolor: '#ffffff', height: '50%', p: 5, pt:14, boxShadow: 1, borderRadius: 2 ,flexDirection: 'column' ,alignItems: 'center' }}>
+          <Box sx={{ display: 'flex', bgcolor: '#ffffff', height: '50%', p: 5, pt:10, boxShadow: 1, borderRadius: 2 ,flexDirection: 'column' ,alignItems: 'center' }}>
+          <img src={logo} alt="Logo" style={{width:'80px'}} />
           <Box sx={{ pb:2 }}><h2>Welcome to Project JAM</h2></Box>
           
           <Box> 
