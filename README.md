@@ -1,13 +1,13 @@
 # Project JAM
 
-This application build to helping user for create a grocery shopping list.
+This application build for helping user to create a grocery shopping list.
 They have 2 repositories Client and Server .\
 Client : [https://github.com/methak/project-jam-client](https://github.com/methak/project-jam-client).\
 Server : [https://github.com/methak/project-jam-server](https://github.com/methak/project-jam-server).\
 Live Demo : [project-jam](https://project-jam.surge.sh/)  required* google account for login
 
 ## Technologies Used
-ReactJS / Material UI / Google OAuth / Axios / GraphQl / ApolloGraphQL Server / MongoDB / Node.js
+ReactJS / Material UI / Google OAuth / Axios / GraphQL / ApolloGraphQL Server / MongoDB / Node.js
 
 ## ERD
 ![](../main/JAM-ERD.png)
@@ -27,9 +27,11 @@ ReactJS / Material UI / Google OAuth / Axios / GraphQl / ApolloGraphQL Server / 
 ![](../main/jam-wireframe.png)
 
 ### `code snippet`
+![Handle Google USer Login](../main/google_login.png)
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+![How to Verify Route](../main/verify_router.png)
+
+![Axios Post Image](../main/axios_post_image.png)
 
 ### Future Work
 - Fetch API from a real grocery company to retrieve live market data to show user.
