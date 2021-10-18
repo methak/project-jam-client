@@ -1,6 +1,6 @@
 export const GET_STORES_QUERY = `
-{
-  getStores {
+query($shopper: ID!){
+  getStores (shopper : $shopper) {
     _id
     createdAt
     title

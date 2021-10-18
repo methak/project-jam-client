@@ -27,8 +27,11 @@ const StoreList = (props) => {
     }, []);
 
     const getStores = async () => {
-        const { getStores } = await client.request(GET_STORES_QUERY);
-        //console.log(getStores);
+        const variables = { shopper: state.currentUser._id};
+        const { getStores } = await client.request(
+          GET_STORES_QUERY,
+          variables
+          )
         dispatch({
             type: "GET_STORES",
             payload: getStores
