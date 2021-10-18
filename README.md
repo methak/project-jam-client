@@ -1,12 +1,16 @@
-# Getting Started with Create React App
+# Project JAM
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+This application build to helping user for create a grocery shopping list.
+They have 2 repositories Client and Server 
+Client : [https://github.com/methak/project-jam-client](https://github.com/methak/project-jam-client)
+Server : [https://github.com/methak/project-jam-server](https://github.com/methak/project-jam-server)
+Live Demo : [project-jam](https://project-jam.surge.sh/) required* google account for login
 
-## Available Scripts
+## Technologies Used
+ReactJS / Material UI / Google OAuth / GraphQl / ApolloGraphQL Server / MongoDB / Node.js
 
-In the project directory, you can run:
-
-### `npm start`
+## ERD
+![Optional Text](../JAM-ERD.png)
 
 Runs the app in the development mode.\
 Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
