@@ -1,7 +1,8 @@
 import { useState, useEffect } from "react";
 import { GraphQLClient } from "graphql-request";
 
-export const BASE_URL = "http://localhost:4000/qraphql"
+// export const BASE_URL = "http://localhost:4000/qraphql"
+export const BASE_URL = "https://quiet-refuge-81331.herokuapp.com/graphql"
 
 export const useClient = () => {
   const [idToken, setIdtoken] = useState("");
